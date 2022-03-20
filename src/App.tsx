@@ -37,15 +37,24 @@ function MyApp() {
         flexDirection: 'column'
       }}
     >
-      <>
+      <Box
+        sx={{
+          width: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderBottom: `1px solid ${isColorDarkMode}`
+        }}
+      >
         <Box
           sx={{
-            width: '100%',
+            width: '80%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            borderBottom: `1px solid ${isColorDarkMode}`
           }}
+          mt={1}
+          mb={1}
         >
           {isDarkMode ?
             <img src={logoDark} alt='Logo' style={{ width: 153, height: 38 }} />
@@ -61,7 +70,7 @@ function MyApp() {
           >
             <Box mr={2}>
               <AutoGraphIcon
-                sx={{ fontSize: 40 }}
+                sx={{ fontSize: 48 }}
               />
             </Box>
             <Box
@@ -83,7 +92,7 @@ function MyApp() {
             </Box>
           </Box>
         </Box>
-      </>
+      </Box>
       <BitcoinChart />
       <ProfitCalculator />
       <Footer />
