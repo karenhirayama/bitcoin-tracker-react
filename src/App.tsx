@@ -1,7 +1,7 @@
 import { createContext, useContext, useMemo, useState } from 'react';
 import Box from '@mui/material/Box';
 import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
-import { amber } from '@mui/material/colors';
+import { blue } from '@mui/material/colors';
 import { BitcoinChart } from './components/BitcoinChart/BitcoinChart';
 import { ProfitCalculator } from './components/Calculation/ProfitCalculator/ProfitCalculator';
 import { Footer } from './components/Footer/Footer';
@@ -119,8 +119,11 @@ export default function ToggleColorMode() {
           ...(mode === 'light'
             ? {
               // palette values for light mode
-              primary: amber,
+              primary: blue,
               text: {
+                primary: '#192657',
+              },
+              focus: {
                 primary: '#192657',
               },
             }
@@ -132,6 +135,9 @@ export default function ToggleColorMode() {
               text: {
                 primary: '#fff',
               },
+              focus: {
+                primary: '#FFF',
+              },
               mode: 'dark'
             }),
         },
@@ -139,6 +145,7 @@ export default function ToggleColorMode() {
     [mode],
   );
 
+  console.log(theme)
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>

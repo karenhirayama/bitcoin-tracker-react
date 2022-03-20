@@ -37,12 +37,15 @@ export const BitcoinChart = () => {
         </Box>
         <Typography variant='h6' mt={6} mb={2}
           sx={{
+            display: 'flex',
             fontWeight: 400,
             backgroundColor: '#7476ED',
             color: '#FFF',
-            borderRadius: 2
+            borderRadius: 2,
+            width: '100%',
+            justifyContent: 'center'
           }}
-          pt={1} pr={4} pb={1} pl={4}
+          pt={2} pb={2} pr={3} pl={3}
         >
           This project is not investment advice! Past performance is not an indication of future results.
         </Typography>
