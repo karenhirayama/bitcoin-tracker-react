@@ -4,7 +4,6 @@ import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import { BitcoinChart } from './components/BitcoinChart/BitcoinChart';
 import { ProfitCalculator } from './components/Calculation/ProfitCalculator/ProfitCalculator';
-import { Footer } from './components/Footer/Footer';
 import logoLight from './logo-light-mode.svg';
 import logoDark from './logo-dark-mode.svg';
 import CircleIcon from '@mui/icons-material/Circle';
@@ -95,8 +94,6 @@ function MyApp() {
       </Box>
       <BitcoinChart />
       <ProfitCalculator />
-      <Footer />
-
     </Box >
   );
 }
@@ -145,7 +142,6 @@ export default function ToggleColorMode() {
     [mode],
   );
 
-  console.log(theme)
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
