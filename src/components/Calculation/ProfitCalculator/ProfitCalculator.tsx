@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { Box, FormControl, InputAdornment, Stack, TextField, Typography, useTheme } from '@mui/material';
 import { ResultCalculator } from '../ResultCalculator/ResultCalculator';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
@@ -9,15 +9,12 @@ import { Footer } from '../../Footer/Footer';
 export const ProfitCalculator = () => {
   const [value, setValue] = useState<Date | null>(new Date());
   const theme = useTheme();
-  const ResultCalculatorDiv = useRef(document.createElement("div"))
 
   const [showResultCalculator, setShowResultCalculator] = useState(false);
   const handleCalculator = () => {
     setShowResultCalculator(true);
-    ResultCalculatorDiv.current?.scrollIntoView();
   }
 
-  console.log(ResultCalculatorDiv.current?.scrollIntoView())
   return (
     <>
       <Box
@@ -141,7 +138,6 @@ export const ProfitCalculator = () => {
         </Box>
       </Box>
       <Footer />
-      <div ref={ResultCalculatorDiv}></div>
     </>
   )
 }
