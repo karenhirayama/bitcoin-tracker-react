@@ -1,7 +1,22 @@
-import { Box, Typography } from '@mui/material'
-import React from 'react'
+import { Box, CircularProgress, Typography } from '@mui/material'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { Bitcoin } from '../Api/Api';
 
 export const BitcoinChart = () => {
+
+  const [historicalDataBitcoin, setHistoricalDataBitcoin] = useState([]);
+  const [days, setDays] = useState(1);
+
+  const fetchHistoricalData = async () => {
+    const { data } = await axios.get(Bitcoin('bitcoin', days, 'usd'));
+    return setHistoricalDataBitcoin(data.prices) as any;
+  }
+
+  useEffect(() => {
+    fetchHistoricalData();
+  }, [days]);
+
   return (
     <Box
       sx={{
@@ -34,6 +49,7 @@ export const BitcoinChart = () => {
           }}
         >
           {/* Chart */}
+          
         </Box>
         <Typography variant='h6' mt={6} mb={2}
           sx={{
