@@ -26,11 +26,15 @@ export const ResultCalculator = (profitResult: any) => {
       }}
     >
       {showData ?
-        (<CircularProgress
-          style={{ color: '#192657', margin: 2 }}
-          size={50}
-          thickness={1}
-        />)
+        (
+          <Box p={2}>
+            <CircularProgress
+              style={{ color: '#192657', margin: 2 }}
+              size={50}
+              thickness={1}
+            />
+          </Box>
+        )
         :
         <><CurrencyExchangeIcon
           sx={{

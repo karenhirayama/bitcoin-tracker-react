@@ -8,7 +8,7 @@ import { Footer } from '../../Footer/Footer';
 import axios from 'axios';
 
 export const ProfitCalculator = () => {
-  const [initialDate, setInitialDate] = useState<Date | null>(new Date());
+  const [initialDate, setInitialDate] = useState<Date | null>(new Date(new Date().setDate(new Date().getDate() - 2)));
   const [initialValue, setInitialValue] = useState('');
   const [profitResult, setProfitResult] = useState([] as any[]);
   const YesterdayDate = new Date(new Date().setDate(new Date().getDate() - 2))?.toISOString().split('T')[0];
@@ -113,7 +113,7 @@ export const ProfitCalculator = () => {
                           views={['year', 'month', 'day']}
                           label='Initial Date'
                           minDate={new Date('2012-03-01')}
-                          maxDate={new Date()}
+                          maxDate={new Date(new Date().setDate(new Date().getDate() - 2))}
                           value={initialDate}
                           onChange={(newValue) => {
                             setInitialDate(newValue);
