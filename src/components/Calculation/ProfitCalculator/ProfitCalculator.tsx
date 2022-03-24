@@ -84,6 +84,9 @@ export const ProfitCalculator = () => {
               <Typography variant='h5'
                 sx={{
                   fontWeight: 700,
+                  [theme.breakpoints.down(600)]: {
+                    fontSize: 12
+                  }
                 }}
               >
                 Crypto Profit Calculator
