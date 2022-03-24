@@ -33,7 +33,7 @@ export const BitcoinChart = () => {
   const isColorLightkMode = theme.palette.mode === 'light' ? '#7476ED' : '#FFF';
 
   const fetchHistoricalData = async () => {
-    const urlApi = 'http://ec2-3-89-75-150.compute-1.amazonaws.com:8000/bitcoin/?_limit=365&_skip=1'
+    const urlApi = 'https://oynv41e6xi.execute-api.us-east-1.amazonaws.com/test/bitcoin/?_limit=365&_skip=1'
     const { data } = await axios.get(urlApi);
     return setHistoricalDataBitcoin(data.map((c: any) => ({
       date: new Date(c.date),

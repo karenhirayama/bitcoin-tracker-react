@@ -18,7 +18,7 @@ export const ProfitCalculator = () => {
 
 
   const getProfitResult = async (initialDate: any, YesterdayDate: any, initialValue: any) => {
-    const ProfitResultApi = `http://ec2-3-89-75-150.compute-1.amazonaws.com:8000/funds/bitcoin/rentability?init_date=${initialDate}&end_date=${YesterdayDate}&invest_value=${initialValue}`
+    const ProfitResultApi = `https://oynv41e6xi.execute-api.us-east-1.amazonaws.com/test/funds/bitcoin/rentability?init_date=${initialDate}&end_date=${YesterdayDate}&invest_value=${initialValue}`
     const { data } = await axios.get(ProfitResultApi);
     return setProfitResult(data) as any;
   }
