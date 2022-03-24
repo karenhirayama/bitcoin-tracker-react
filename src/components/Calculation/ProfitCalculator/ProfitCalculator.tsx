@@ -5,15 +5,28 @@ import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import { DatePicker, LocalizationProvider } from '@mui/lab';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { Footer } from '../../Footer/Footer';
+import axios from 'axios';
 
 export const ProfitCalculator = () => {
-  const [value, setValue] = useState<Date | null>(new Date());
+  const [initialDate, setInitialDate] = useState<Date | null>(new Date());
+  const [initialValue, setInitialValue] = useState('');
+  const [profitResult, setProfitResult] = useState([] as any[]);
+  const YesterdayDate = new Date(new Date().setDate(new Date().getDate() - 2))?.toISOString().split('T')[0];
   const theme = useTheme();
 
   const [showResultCalculator, setShowResultCalculator] = useState(false);
+
+
+  const getProfitResult = async (initialDate: any, YesterdayDate: any, initialValue: any) => {
+    const ProfitResultApi = `http://ec2-3-89-75-150.compute-1.amazonaws.com:8000/funds/bitcoin/rentability?init_date=${initialDate}&end_date=${YesterdayDate}&invest_value=${initialValue}`
+    const { data } = await axios.get(ProfitResultApi);
+    return setProfitResult(data) as any;
+  }
+
   const handleCalculator = () => {
     setShowResultCalculator(true);
-  }
+    getProfitResult(initialDate?.toISOString().split('T')[0], YesterdayDate, initialValue);
+  };
 
   return (
     <>
@@ -21,11 +34,28 @@ export const ProfitCalculator = () => {
         sx={{
           display: 'flex',
           width: '100%',
+          flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center'
         }}
-        mt={3}
       >
+        <Box
+          pr={2} pl={2}
+        >
+          <Typography variant='h6' mt={3} mb={2}
+            sx={{
+              display: 'flex',
+              fontWeight: 400,
+              backgroundColor: '#7476ED',
+              color: '#FFF',
+              borderRadius: 2,
+              justifyContent: 'center'
+            }}
+            pt={2} pb={2} pr={3} pl={3}
+          >
+            This project is not investment advice! Past performance is not an indication of future results.
+          </Typography>
+        </Box>
         <Box
           sx={{
             display: 'flex',
@@ -84,9 +114,9 @@ export const ProfitCalculator = () => {
                           label='Initial Date'
                           minDate={new Date('2012-03-01')}
                           maxDate={new Date()}
-                          value={value}
+                          value={initialDate}
                           onChange={(newValue) => {
-                            setValue(newValue);
+                            setInitialDate(newValue);
                           }}
                           renderInput={(params) => <TextField {...params} helperText={null} />}
                         />
@@ -98,6 +128,8 @@ export const ProfitCalculator = () => {
                         <TextField
                           type='number'
                           label='Investment'
+                          value={initialValue}
+                          onChange={(e: any) => setInitialValue(e.target.value)}
                           InputProps={{
                             startAdornment: <InputAdornment position="start">$</InputAdornment>,
                           }}
@@ -132,7 +164,7 @@ export const ProfitCalculator = () => {
           {/* Result */}
           {showResultCalculator &&
             <>
-              <ResultCalculator />
+              <ResultCalculator profitResult={profitResult} />
             </>
           }
         </Box>
