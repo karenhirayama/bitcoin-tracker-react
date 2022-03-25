@@ -109,13 +109,20 @@ export const BitcoinChart = () => {
         >
           {/* Chart */}
           {
-            !historicalDataBitcoin ?
+            historicalDataBitcoin === [] ?
               (
-                <CircularProgress
-                  style={{ color: '#192657' }}
-                  size={250}
-                  thickness={1}
-                />
+                <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}
+                >
+                  <CircularProgress
+                    style={{ color: '#192657' }}
+                    size={250}
+                    thickness={1}
+                  />
+                </Box>
               ) : (
                 <>
                   <Line options={options} data={data}
