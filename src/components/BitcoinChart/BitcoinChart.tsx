@@ -54,7 +54,7 @@ export const BitcoinChart = () => {
     datasets: [
       {
         data: historicalDataBitcoin.map((coin) => coin.price_usd),
-        label: `Price (Past 365 days) in Bitcoin`,
+        label: `Bitcoin`,
         borderColor: isColorLightkMode,
       }
     ]
@@ -62,18 +62,16 @@ export const BitcoinChart = () => {
 
 
   const options = {
+    scales: {
+      yAxes: [{
+        id: 'Bitcoin',
+        type: 'linear',
+        position: 'right',
+        display: false
+      }]
+    },
     point: {
       radius: 1,
-    },
-    plugins: {
-      legend: {
-        position: 'top' as const,
-      },
-      title: {
-        display: false,
-        text: 'Bitcoin Price Chart',
-        color: isColorLightkMode,
-      },
     },
   };
 
@@ -112,10 +110,10 @@ export const BitcoinChart = () => {
             historicalDataBitcoin === [] ?
               (
                 <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center'
-                }}
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                  }}
                 >
                   <CircularProgress
                     style={{ color: '#192657' }}
@@ -125,10 +123,14 @@ export const BitcoinChart = () => {
                 </Box>
               ) : (
                 <>
-                  <Line options={options} data={data}
+                  <Line options={options as any} data={data as any}
                     style={{
                       maxHeight: 500,
                       maxWidth: 1300,
+                      [theme.breakpoints.down(900)]: {
+                        minHeight: 1000,
+
+                      }
                     }}
                   />
                 </>
