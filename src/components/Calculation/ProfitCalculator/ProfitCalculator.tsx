@@ -49,7 +49,10 @@ export const ProfitCalculator = () => {
               backgroundColor: '#7476ED',
               color: '#FFF',
               borderRadius: 2,
-              justifyContent: 'center'
+              justifyContent: 'center',
+              [theme.breakpoints.down(600)]: {
+                fontSize: 12
+              }
             }}
             pt={2} pb={2} pr={3} pl={3}
           >
@@ -85,13 +88,20 @@ export const ProfitCalculator = () => {
                 sx={{
                   fontWeight: 700,
                   [theme.breakpoints.down(600)]: {
-                    fontSize: 12
+                    fontSize: 14
                   }
                 }}
               >
                 Crypto Profit Calculator
               </Typography>
-              <CurrencyBitcoinIcon sx={{ fontSize: 34 }} />
+              <CurrencyBitcoinIcon
+                sx={{
+                  fontSize: 34,
+                  [theme.breakpoints.down(600)]: {
+                    fontSize: 20
+                  }
+                }}
+              />
             </Box>
             <Box>
               <FormControl fullWidth variant="standard">
@@ -110,7 +120,12 @@ export const ProfitCalculator = () => {
                     >
                       <Box
                         mt={2}
-                        width={200}
+                        sx={{
+                          width: 200,
+                          [theme.breakpoints.down(600)]: {
+                            width: 130
+                          }
+                        }}
                       >
                         <DatePicker
                           views={['year', 'month', 'day']}
@@ -126,7 +141,12 @@ export const ProfitCalculator = () => {
                       </Box>
                       <Box
                         mt={2} ml={3} mr={3}
-                        width={200}
+                        sx={{
+                          width: 200,
+                          [theme.breakpoints.down(600)]: {
+                            width: 130
+                          }
+                        }}
                       >
                         <TextField
                           type='number'
@@ -152,6 +172,9 @@ export const ProfitCalculator = () => {
                           cursor: 'pointer',
                           '&:hover': {
                             backgroundColor: '#7476ED',
+                          },
+                          [theme.breakpoints.down(600)]: {
+                            width: 100
                           }
                         }}
                         onClick={handleCalculator}

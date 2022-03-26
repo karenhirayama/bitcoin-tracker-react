@@ -76,21 +76,40 @@ export const BitcoinChart = () => {
   };
 
   const options = {
+    responsive: true,
     scales: {
       yAxis: {
-        // The axis for this scale is determined from the first letter of the id as `'x'`
-        // It is recommended to specify `position` and / or `axis` explicitly.
+        showLine: true,
         position: 'right',
         ticks: {
           color: isColorLightkMode,
         }
       },
       xAxis: {
+        showLine: true,
         ticks: {
           color: isColorLightkMode,
         }
       }
-    }
+    },
+    plugins: {
+      tooltip: {
+        displayColors: false,
+        backgroundColor: '#7476ED',
+        titleAlign: 'center',
+        callbacks: {
+          label: function () {
+            let label = 'GOOD TO BUY';
+            return label;
+          },
+          labelTextColor: function () {
+            let textColor = 'white';
+            return textColor;
+          }
+        }
+      }
+    },
+
   };
 
   return (
@@ -112,14 +131,20 @@ export const BitcoinChart = () => {
       >
         <Typography variant='h4' mt={6} mb={3}
           sx={{
-            fontWeight: 700
+            fontWeight: 700,
+            [theme.breakpoints.down(600)]: {
+              fontSize: 18
+            }
           }}
         >
           Bitcoin Price Chart
         </Typography>
         <Box
           sx={{
-            width: '80%',
+            width: '100%',
+            [theme.breakpoints.down(600)]: {
+              width: '97vw',
+            }
           }}
           mb={1}
         >
@@ -133,7 +158,9 @@ export const BitcoinChart = () => {
                 }}
               >
                 <CircularProgress
-                  style={{ color: isColorLightkMode }}
+                  style={{
+                    color: isColorLightkMode,
+                  }}
                   size={250}
                   thickness={1}
                 />
@@ -141,14 +168,6 @@ export const BitcoinChart = () => {
             ) : (
               <>
                 <Line options={options as any} data={data as any}
-                  style={{
-                    maxHeight: 1500,
-                    maxWidth: 1300,
-                    [theme.breakpoints.down(900)]: {
-                      height: 1000,
-
-                    }
-                  }}
                 />
               </>
             )
@@ -158,33 +177,40 @@ export const BitcoinChart = () => {
           sx={{
             width: 'inherit',
             display: 'flex',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            [theme.breakpoints.down(600)]: {
+              flexDirection: 'column',
+            }
           }}
           mt={2}
         >
-          {dateOptions.map((option) => {
+          {dateOptions.map((option, index) => {
             return (
-              <>
-                <Typography
-                  sx={{
-                    cursor: 'pointer',
-                    paddingTop: 1,
-                    paddingBottom: 1,
-                    paddingLeft: 3,
-                    paddingRight: 3,
-                    border: `3px solid pink`,
-                    borderRadius: 2,
-                    fontWeight: 700,
-                    '&:hover': {
-                      backgroundColor: 'pink',
-                      color: '#7476ED'
-                    }
-                  }}
-                  onClick={() => updateDateHistorical(option)}
-                >
-                  {option} days
-                </Typography>
-              </>
+              <Typography
+                key={index}
+                sx={{
+                  cursor: 'pointer',
+                  paddingTop: 1,
+                  paddingBottom: 1,
+                  paddingLeft: 3,
+                  paddingRight: 3,
+                  border: `3px solid pink`,
+                  borderRadius: 2,
+                  fontWeight: 700,
+                  '&:hover': {
+                    backgroundColor: 'pink',
+                    color: '#7476ED'
+                  },
+                  [theme.breakpoints.down(610)]: {
+                    fontSize: 12,
+                    textAlign: 'center',
+                    marginBottom: 2,
+                  }
+                }}
+                onClick={() => updateDateHistorical(option)}
+              >
+                {option} days
+              </Typography>
             )
           })}
         </Box>

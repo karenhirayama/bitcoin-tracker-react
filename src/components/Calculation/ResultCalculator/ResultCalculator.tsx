@@ -36,16 +36,17 @@ export const ResultCalculator = (profitResult: any) => {
           </Box>
         )
         :
-        <><CurrencyExchangeIcon
-          sx={{
-            color: '#FFF',
-            fontSize: 150,
-            marginLeft: 6,
-            [theme.breakpoints.down(1020)]: {
-              display: 'none'
-            }
-          }}
-        />
+        <>
+          <CurrencyExchangeIcon
+            sx={{
+              color: '#FFF',
+              fontSize: 150,
+              marginLeft: 6,
+              [theme.breakpoints.down(1020)]: {
+                display: 'none'
+              }
+            }}
+          />
           <Box
             sx={{
               display: 'flex',
@@ -59,6 +60,11 @@ export const ResultCalculator = (profitResult: any) => {
               fontWeight='700'
               color='#192657'
               textAlign='center'
+              sx={{
+                [theme.breakpoints.down(600)]: {
+                  fontSize: 12
+                }
+              }}
             >
               Today’s Value of your $ investment:
             </Typography>
@@ -66,6 +72,11 @@ export const ResultCalculator = (profitResult: any) => {
               variant='h4'
               fontWeight='700'
               color='#FFF'
+              sx={{
+                [theme.breakpoints.down(600)]: {
+                  fontSize: 24
+                }
+              }}
             >
               ${proftValue}
             </Typography>
@@ -74,6 +85,11 @@ export const ResultCalculator = (profitResult: any) => {
               fontWeight='700'
               mt={2}
               color='#192657'
+              sx={{
+                [theme.breakpoints.down(600)]: {
+                  fontSize: 12
+                }
+              }}
             >
               Return
             </Typography>
@@ -81,6 +97,11 @@ export const ResultCalculator = (profitResult: any) => {
               variant='h4'
               fontWeight='700'
               color='#FFF'
+              sx={{
+                [theme.breakpoints.down(600)]: {
+                  fontSize: 24
+                }
+              }}
             >
               {rentability}%
             </Typography>

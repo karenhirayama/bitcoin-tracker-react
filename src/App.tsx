@@ -55,7 +55,7 @@ function MyApp() {
           mt={1}
           mb={1}
         >
-          <CurrencyBitcoinIcon sx={{fontSize: 40}}/>
+          <CurrencyBitcoinIcon sx={{fontSize: 36}}/>
           <Box
             sx={{
               display: 'flex',
@@ -64,24 +64,24 @@ function MyApp() {
           >
             <Box mr={2}>
               <AutoGraphIcon
-                sx={{ fontSize: 48 }}
+                sx={{ fontSize: 36 }}
               />
             </Box>
             <Box
               sx={{ cursor: 'pointer', backgroundColor: isColorDarkMode, color: isColorLightkMode, height: 'fit-content' }}
               onClick={changeMode}
               pt={0.3}
-              pr={0.4}
-              pl={0.4}
+              pr={0.5}
+              pl={0.3}
               borderRadius={5}
             >
               <CircleIcon
                 sx={
                   isDarkMode
                     ?
-                    { fontSize: 20, paddingRight: 3 }
+                    { fontSize: 14, paddingRight: 2 }
                     :
-                    { fontSize: 20, paddingLeft: 3 }}
+                    { fontSize: 14, paddingLeft: 2 }}
               />
             </Box>
           </Box>
