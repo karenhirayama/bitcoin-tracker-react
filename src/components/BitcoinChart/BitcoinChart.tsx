@@ -63,15 +63,14 @@ export const BitcoinChart = () => {
 
   const options = {
     scales: {
-      yAxes: [{
-        id: 'Bitcoin',
-        type: 'linear',
+      y: [{
+        type: 'none',
         position: 'right',
         display: false
       }]
     },
     point: {
-      radius: 1,
+      radius: 50,
     },
   };
 
@@ -125,10 +124,10 @@ export const BitcoinChart = () => {
                 <>
                   <Line options={options as any} data={data as any}
                     style={{
-                      maxHeight: 500,
+                      maxHeight: 1500,
                       maxWidth: 1300,
                       [theme.breakpoints.down(900)]: {
-                        minHeight: 1000,
+                        height: 1000,
 
                       }
                     }}

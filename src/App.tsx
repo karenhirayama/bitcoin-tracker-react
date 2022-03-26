@@ -5,8 +5,7 @@ import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import { blue } from '@mui/material/colors';
 import { BitcoinChart } from './components/BitcoinChart/BitcoinChart';
 import { ProfitCalculator } from './components/Calculation/ProfitCalculator/ProfitCalculator';
-import logoLight from './logo-light-mode.svg';
-import logoDark from './logo-dark-mode.svg';
+import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import CircleIcon from '@mui/icons-material/Circle';
 import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 
@@ -56,12 +55,7 @@ function MyApp() {
           mt={1}
           mb={1}
         >
-          {isDarkMode ?
-            <img src={logoDark} alt='Logo' style={{ width: 153, height: 38 }} />
-            :
-            <img src={logoLight} alt='Logo' style={{ width: 153, height: 38 }} />
-
-          }
+          <CurrencyBitcoinIcon sx={{fontSize: 40}}/>
           <Box
             sx={{
               display: 'flex',
