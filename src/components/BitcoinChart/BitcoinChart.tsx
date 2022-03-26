@@ -23,27 +23,40 @@ ChartJS.register(
   Legend
 );
 
-
-
+const dateOptions = [7, 30, 365];
 
 export const BitcoinChart = () => {
 
   const [historicalDataBitcoin, setHistoricalDataBitcoin] = useState([] as any[]);
+  const [dateHistorical, setDateHistorical] = useState(365);
+  const [isloading, setIsLoading] = useState(true);
+
   const theme = useTheme();
   const isColorLightkMode = theme.palette.mode === 'light' ? '#7476ED' : '#FFF';
 
   const fetchHistoricalData = async () => {
-    const urlApi = 'https://oynv41e6xi.execute-api.us-east-1.amazonaws.com/test/bitcoin/?_limit=365&_skip=1'
+    const urlApi = `https://oynv41e6xi.execute-api.us-east-1.amazonaws.com/test/bitcoin/?_limit=${dateHistorical}&_skip=1`
     const { data } = await axios.get(urlApi);
+    setIsLoading(false)
+
     return setHistoricalDataBitcoin(data.map((c: any) => ({
       date: new Date(c.date),
       price_usd: c.price_usd
     })).sort((a: any, b: any) => a.date - b.date)) as any;
+
+
   }
 
   useEffect(() => {
     fetchHistoricalData();
-  }, []);
+  }, [dateHistorical]);
+
+  const updateDateHistorical = (date: any) => {
+    if (date !== dateHistorical) {
+      setIsLoading(true)
+      setDateHistorical(date);
+    }
+  };
 
   const data = {
     labels: historicalDataBitcoin.map((coin) => {
@@ -54,24 +67,30 @@ export const BitcoinChart = () => {
     datasets: [
       {
         data: historicalDataBitcoin.map((coin) => coin.price_usd),
-        label: `Bitcoin`,
+        label: `Bitcoin in ${dateHistorical} days`,
+        yAxisID: 'yAxis',
         borderColor: isColorLightkMode,
+        fill: true,
       }
     ]
   };
 
-
   const options = {
     scales: {
-      y: [{
-        type: 'none',
+      yAxis: {
+        // The axis for this scale is determined from the first letter of the id as `'x'`
+        // It is recommended to specify `position` and / or `axis` explicitly.
         position: 'right',
-        display: false
-      }]
-    },
-    point: {
-      radius: 50,
-    },
+        ticks: {
+          color: isColorLightkMode,
+        }
+      },
+      xAxis: {
+        ticks: {
+          color: isColorLightkMode,
+        }
+      }
+    }
   };
 
   return (
@@ -105,36 +124,69 @@ export const BitcoinChart = () => {
           mb={1}
         >
           {/* Chart */}
-          {
-            historicalDataBitcoin === [] ?
-              (
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center'
-                  }}
-                >
-                  <CircularProgress
-                    style={{ color: '#192657' }}
-                    size={250}
-                    thickness={1}
-                  />
-                </Box>
-              ) : (
-                <>
-                  <Line options={options as any} data={data as any}
-                    style={{
-                      maxHeight: 1500,
-                      maxWidth: 1300,
-                      [theme.breakpoints.down(900)]: {
-                        height: 1000,
+          {(isloading) ?
+            (
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center'
+                }}
+              >
+                <CircularProgress
+                  style={{ color: isColorLightkMode }}
+                  size={250}
+                  thickness={1}
+                />
+              </Box>
+            ) : (
+              <>
+                <Line options={options as any} data={data as any}
+                  style={{
+                    maxHeight: 1500,
+                    maxWidth: 1300,
+                    [theme.breakpoints.down(900)]: {
+                      height: 1000,
 
-                      }
-                    }}
-                  />
-                </>
-              )
+                    }
+                  }}
+                />
+              </>
+            )
           }
+        </Box>
+        <Box
+          sx={{
+            width: 'inherit',
+            display: 'flex',
+            justifyContent: 'space-between'
+          }}
+          mt={2}
+        >
+          {dateOptions.map((option) => {
+            return (
+              <>
+                <Typography
+                  sx={{
+                    cursor: 'pointer',
+                    paddingTop: 1,
+                    paddingBottom: 1,
+                    paddingLeft: 3,
+                    paddingRight: 3,
+                    border: `3px solid pink`,
+                    borderRadius: 2,
+                    fontWeight: 700,
+                    '&:hover': {
+                      backgroundColor: 'pink',
+                      color: '#7476ED'
+                    }
+                  }}
+                  onClick={() => updateDateHistorical(option)}
+                >
+                  {option} days
+                </Typography>
+              </>
+            )
+          })}
         </Box>
       </Box>
     </Box >
