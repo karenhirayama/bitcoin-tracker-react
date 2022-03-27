@@ -15,5 +15,6 @@ To know more about the API: <a href='https://oynv41e6xi.execute-api.us-east-1.am
 </div>
 The user can see a chart with a historical information about bitcoin, change the mode of the website and calculate profit.
 <img src='./DarkMode.png' alt='dark mode' />
+
 ## Deploy 🚀
 To make this project more than http://localhost:3000/ this project is deploying with [firebase](https://firebase.google.com/) 😻
