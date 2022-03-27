@@ -131,7 +131,7 @@ export const ProfitCalculator = () => {
                           views={['year', 'month', 'day']}
                           label='Initial Date'
                           minDate={new Date('2012-03-01')}
-                          maxDate={new Date(new Date().setDate(new Date().getDate() - 2))}
+                          maxDate={new Date(new Date().setDate(new Date().getDate() - 1))}
                           value={initialDate}
                           onChange={(newValue) => {
                             setInitialDate(newValue);

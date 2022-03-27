@@ -38,14 +38,15 @@ export const BitcoinChart = () => {
     const urlApi = `https://oynv41e6xi.execute-api.us-east-1.amazonaws.com/test/bitcoin/?_limit=${dateHistorical}&_skip=1`
     const { data } = await axios.get(urlApi);
     setIsLoading(false)
-
+    const increaseNumber = dateHistorical === 30 ? 2 : 1;
     return setHistoricalDataBitcoin(data.map((c: any) => ({
-      date: new Date(c.date),
+      date: new Date(c.date).setDate(new Date(c.date).getDate() + increaseNumber),
       price_usd: c.price_usd
     })).sort((a: any, b: any) => a.date - b.date)) as any;
 
 
   }
+  console.log(historicalDataBitcoin)
 
   useEffect(() => {
     fetchHistoricalData();
@@ -98,10 +99,7 @@ export const BitcoinChart = () => {
         backgroundColor: '#7476ED',
         titleAlign: 'center',
         callbacks: {
-          label: function () {
-            let label = 'GOOD TO BUY';
-            return label;
-          },
+
           labelTextColor: function () {
             let textColor = 'white';
             return textColor;
