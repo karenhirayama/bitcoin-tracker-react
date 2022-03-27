@@ -18,7 +18,7 @@ The user can see a chart with historical information about bitcoin, change the m
 </div>
 
 ## Deploy 🚀
-To make this project more than http://localhost:3000/ this project is deploying with [firebase](https://firebase.google.com/) 😻
+Deploy with [firebase](https://firebase.google.com/) 😻
 
 Link to the project: [Bitcoin Tracker Project](https://bitcoin-chart-project.web.app/)
 
