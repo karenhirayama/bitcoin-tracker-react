@@ -46,7 +46,6 @@ export const BitcoinChart = () => {
 
 
   }
-  console.log(historicalDataBitcoin)
 
   useEffect(() => {
     fetchHistoricalData();
