@@ -8,7 +8,7 @@ It was build with ReactJS, TypeScript, ChartJS, Axios and Material UI and using 
  * [Axios](https://axios-http.com/docs/intro);
  * [MaterialUI](https://mui.com/pt/);
 
-To know more about the API: [CRYPTO API](https://oynv41e6xi.execute-api.us-east-1.amazonaws.com/test)
+To know more about the API: [CRYPTO API](https://sh4z6lm4u1.execute-api.us-east-1.amazonaws.com/dev)
 ## User story
 <div align='center'>
 <img src='./LightMode.png' alt='light mode' />
