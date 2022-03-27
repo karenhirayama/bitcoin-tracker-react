@@ -35,7 +35,7 @@ export const BitcoinChart = () => {
   const isColorLightkMode = theme.palette.mode === 'light' ? '#7476ED' : '#FFF';
 
   const fetchHistoricalData = async () => {
-    const urlApi = `https://oynv41e6xi.execute-api.us-east-1.amazonaws.com/test/bitcoin/?_limit=${dateHistorical}&_skip=1`
+    const urlApi = `https://sh4z6lm4u1.execute-api.us-east-1.amazonaws.com/dev/bitcoin/?_limit=${dateHistorical}&_skip=1`
     const { data } = await axios.get(urlApi);
     setIsLoading(false)
     const increaseNumber = dateHistorical === 30 ? 2 : 1;
