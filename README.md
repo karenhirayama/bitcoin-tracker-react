@@ -10,7 +10,10 @@ It was build with ReactJS, TypeScript, ChartJS, Axios and Material UI and using 
 
 To know more about the API: <a href='https://oynv41e6xi.execute-api.us-east-1.amazonaws.com/test'>BITCOIN API</a>
 ## User story
-<img src='./DarkMode.png' alt='dark mode' />
+<div align="center">
 <img src='./LightMode.png' alt='light mode' />
+</div>
+The user can see a chart with a historical information about bitcoin, change the mode of the website and calculate profit.
+<img src='./DarkMode.png' alt='dark mode' />
 ## Deploy 🚀
 To make this project more than http://localhost:3000/ this project is deploying with [firebase](https://firebase.google.com/) 😻
